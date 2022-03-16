@@ -12,8 +12,8 @@ fun main() {
 
         try {
             likes = userInput?.toInt()!!
-        } catch (e: Exception) {
-            println("Прошу ввести целое число больше нуля")
+        } catch (e: NumberFormatException) {
+            println("Прошу ввести целое ЧИСЛО больше нуля")
             continue
         }
 
@@ -25,13 +25,13 @@ fun main() {
         break
     }
 
+    val reducedLikes = likes % 100
     val wordOut =
-        if ((likes > 1) && (likes < 21))
+        if ((reducedLikes > 1) && (reducedLikes % 10 != 1) || (reducedLikes == 11))
             LUD
-        else {
-            if (likes % 10 == 1) CHEL
-            else LUD
-        }
+        else
+            CHEL
+
 
     println("Понравилось $likes $wordOut")
 }
